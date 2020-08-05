@@ -49,7 +49,7 @@ struct EmojiRangerWidget: Widget {
     private let kind: String = "EmojiRangerWidget"
 
     public var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider(), placeholder: PlaceholderView()) { entry in
+        StaticConfiguration(kind: kind, provider: Provider()) { entry in
             EmojiRangerWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Ranger Detail")

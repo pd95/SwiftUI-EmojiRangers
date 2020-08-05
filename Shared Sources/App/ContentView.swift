@@ -28,6 +28,12 @@ struct ContentView: View {
                     TableRow(character: .egghead)
                 }
             }
+            .onAppear {
+                // Check for the last selected character.
+                if let character = CharacterDetail.getLastSelectedCharacter() {
+                    print("Last character selection: \(character)")
+                }
+            }
             .navigationBarTitle("Your Characters")
             .onOpenURL(perform: { (url) in
                 self.pandaActive = url == CharacterDetail.panda.url

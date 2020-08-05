@@ -69,10 +69,10 @@ struct CharacterDetail: Hashable, Codable, Identifiable {
         return date ?? Date()
     }
     
-    static func characterFromName(name: String?) -> CharacterDetail {
+    static func characterFromName(name: String?) -> CharacterDetail? {
         return (availableCharacters + remoteCharacters).first(where: { (character) -> Bool in
             return character.name == name
-        }) ?? .panda
+        })
     }
     
     static func characterFromURL(url: URL) -> CharacterDetail? {
@@ -107,6 +107,19 @@ struct CharacterDetail: Hashable, Codable, Identifiable {
             completion(nil, error)
         }
         
+    }
+    
+    private static let appGroup = "group.com.example.apple-samplecode.Emoji.Rangers.Shared"
+    
+    static func setLastSelectedCharacter(heroName: String) {
+        UserDefaults(suiteName: appGroup)?.setValue(heroName, forKey: "hero")
+    }
+    
+    static func getLastSelectedCharacter() -> CharacterDetail? {
+        guard let name = UserDefaults(suiteName: appGroup)?.value(forKey: "hero") as? String else {
+            return nil
+        }
+        return CharacterDetail.characterFromName(name: name)
     }
 }
 

@@ -59,7 +59,7 @@ struct LeaderboardWidget: Widget {
     private let kind: String = "LeaderboardWidget"
 
     public var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: LeaderboardProvider(), placeholder: LeaderboardPlaceholderView()) { entry in
+        StaticConfiguration(kind: kind, provider: LeaderboardProvider()) { entry in
             LeaderboardWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Ranger Leaderboard")

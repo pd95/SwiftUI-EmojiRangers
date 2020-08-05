@@ -9,6 +9,7 @@ import WidgetKit
 import SwiftUI
 
 struct Provider: IntentTimelineProvider {
+    
     typealias Intent = CharacterSelectionIntent
     
     public typealias Entry = SimpleEntry
@@ -101,7 +102,7 @@ struct EmojiRangerWidget: Widget {
     private let kind: String = "EmojiRangerWidget"
 
     public var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: CharacterSelectionIntent.self, provider: Provider(), placeholder: PlaceholderView()) { entry in
+        IntentConfiguration(kind: kind, intent: CharacterSelectionIntent.self, provider: Provider()) { entry in
             EmojiRangerWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Ranger Detail")

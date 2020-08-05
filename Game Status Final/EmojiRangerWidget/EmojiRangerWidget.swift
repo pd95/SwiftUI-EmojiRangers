@@ -14,9 +14,12 @@ struct Provider: IntentTimelineProvider {
     public typealias Entry = SimpleEntry
     
     func character(for configuration: DynamicCharacterSelectionIntent) -> CharacterDetail {
-        let name = configuration.hero?.identifier
-        
-        return CharacterDetail.characterFromName(name: name)
+        if let name = configuration.hero?.identifier, let character = CharacterDetail.characterFromName(name: name) {
+            // Save the last selected character to our App Group.
+            CharacterDetail.setLastSelectedCharacter(heroName: name)
+            return character
+        }
+        return .panda
     }
 
     public func snapshot(for configuration: DynamicCharacterSelectionIntent, with context: Context, completion: @escaping (SimpleEntry) -> Void) {
@@ -94,7 +97,7 @@ struct EmojiRangerWidget: Widget {
     private let kind: String = "EmojiRangerWidget"
 
     public var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: DynamicCharacterSelectionIntent.self, provider: Provider(), placeholder: PlaceholderView()) { entry in
+        IntentConfiguration(kind: kind, intent: DynamicCharacterSelectionIntent.self, provider: Provider()) { entry in
             EmojiRangerWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Ranger Detail")
