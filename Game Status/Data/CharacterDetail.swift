@@ -21,6 +21,10 @@ struct CharacterDetail: Hashable, Codable, Identifiable {
         name
     }
 
+    var identifier: String {
+        url.lastPathComponent
+    }
+
     static let panda = CharacterDetail(
                 name: "Power Panda",
                 avatar: "🐼",

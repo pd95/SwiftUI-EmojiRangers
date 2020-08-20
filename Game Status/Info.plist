@@ -20,8 +20,7 @@
 	<string>1</string>
 	<key>INIntentsSupported</key>
 	<array>
-		<string>CharacterSelectionIntemediateIntent</string>
-		<string>CharacterSelectionAdvancedIntent</string>
+		<string>DynamicCharacterSelection</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
